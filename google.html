@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+        }
+
+        #search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        #search-box {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #google-logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        #search-btn {
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        #search-btn:hover {
+            background-color: #357ae8;
+        }
+
+        #file-input {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="search-container">
+        <div id="search-box">
+            <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google Logo" id="google-logo">
+            <form action="https://www.google.com/search" method="GET">
+                <input type="text" id="search-input" name="q" placeholder="Search Google...">
+                <button type="submit" id="search-btn">Google Search</button>
+            </form>
+            <input type="file" id="file-input" accept="image/*" onchange="displayImage(this)">
+            <img src="" id="uploaded-image" alt="Uploaded Image" style="max-width: 100%; display: none;">
+        </div>
+    </div>
+
+    <script>
+        function displayImage(input) {
+            var file = input.files[0];
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('uploaded-image').src = e.target.result;
+                    document.getElementById('uploaded-image').style.display = 'block';
+                    document.getElementById('search-input').value = ''; // Clear text input
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>
+
